@@ -12,5 +12,5 @@ spec:
   volumes:
   - name: storage
     hostPath:
-      path: "/Users/iseyoshitaka/github/kubernetes-sample/storage"
-      type: DirectoryOrCreate
+      path: "/home/docker/storage"
+      type: Directory
