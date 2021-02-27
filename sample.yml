@@ -14,3 +14,5 @@ spec:
     hostPath:
       path: "/home/docker/storage"
       type: Directory
+    # persistentVolumeClaim:
+    #   claimName: volume-claim

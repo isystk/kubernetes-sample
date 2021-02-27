@@ -208,11 +208,20 @@ curl http://192.168.64.2:30000/
 kubectl delete -f service.yml
 ```
 
+## PV・PVCの動作確認
+```
+# リソースの作成
+kubectl apply -f storage.yml
+# リソースの確認
+kubectl get pvc,pv
+# リソースの削除
+kubectl delete -f storage.yml
+```
+
 
 ## 参照
 
-### Kubernetes リファレンス
-https://kubernetes.io/ja/docs/reference/
+- [Kubernetes リファレンス](https://kubernetes.io/ja/docs/reference/)
 
 ## Licence
 
