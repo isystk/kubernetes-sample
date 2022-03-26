@@ -32,26 +32,6 @@
 ・・・外部公開、L7ロードバランサー
 
 
-## Kubernetes を利用する為の環境構築
-```
-# Minikube をインストールする
-$ brew install minikube
-# 仮想環境にはDockerを利用する為、存在しない場合はインストールする
-$ brew install docker
-# Dockerを利用してminikubeを起動します。
-$ minikube start --vm-driver=docker
-# Minikubeの中にSSHします。（以降この中でKubernetesが動くようになります。）
-$ minikube ssh
-exit
-# HyperKitのIPを確認する
-$ minikube ip
-# ダッシュボードを表示します。
-$ minikube dashboard
-# Minikubeを停止する
-$ minikube stop
-# Minikubeを削除する
-$ minikube delete
-```
 
 ### Hello World
 ```
