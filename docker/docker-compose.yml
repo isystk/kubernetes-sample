@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+
+  mysql:
+    image: k8s-sample/mysql
+    container_name: k8s-sample-mysql
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile
+    environment:
+      MYSQL_DATABASE: sample
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+      TZ: Asia/Tokyo
+    ports:
+      - 3306:3306
+    restart: always
+
+  backend:
+    image: k8s-sample/backend
+    container_name: k8s-sample-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: "mysql://root:password@mysql:3306/sample"
+    ports:
+     - 9000:9000
+    restart: always
