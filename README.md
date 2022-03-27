@@ -45,7 +45,7 @@ Kubernetes (クーバーネイティス)とは、Dockerなどのコンテナ仮�
 ## Kubernetes を利用する為の環境構築
 ```
 # 必要なコマンドをインストールする
-$ brew install minikube kompose docker
+$ brew install minikube docker docker-compose
 # Dockerを利用してminikubeを起動します。
 $ minikube start --vm-driver=docker
 # Minikubeの中にSSHします。（以降この中でKubernetesが動くようになります。）
@@ -78,12 +78,6 @@ exit
 $ docker-compose -f docker/docker-compose.yml down
 # 作成されたdocker イメージを確認
 $ docker images | grep k8s-sample
-
-# docker-compose.yml を k8s で利用できる形に変換する
-$ cd docker
-$ kompose convert
-$ mv *.yaml ..
-$ cd ..
 
 # リソースの作成
 $ kubectl apply -f .
