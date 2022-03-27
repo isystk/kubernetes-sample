@@ -27,5 +27,17 @@ services:
     environment:
       DATABASE_URL: "mysql://root:password@mysql:3306/sample"
     ports:
-     - 9000:9000
+      - 9000:9000
+    restart: always
+
+  frontend:
+    image: k8s-sample/frontend
+    container_name: k8s-sample-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    environment:
+      externalEndpointUrl: "http://backend:9000"
+    ports:
+     - 3000:3000
     restart: always

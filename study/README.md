@@ -1,37 +1,3 @@
-# Kubernetes のお勉強
-
-
-## リソースの種類
-
-- Podとは
-・・・ 最小単位、同一環境で動作するDockerコンテナの集合
-１つのPodには複数のコンテナを設定できる。
-
-- ReplicaSetとは
-・・・Podの集合、Podをスケールできる。
-
-- Deploymentとは
-・・・ReplicaSetの集合、ReplicaSetの世代管理ができる
-
-- Service
-・・・外部公開、名前解決、L4ロードバランサー
-
-- ConfigMapとは
-・・・Kubernetes上で利用する設定情報
-
-- Secretとは
-・・・Kubernetes上で利用する機微情報
-
-- PersistentVolume（PV）・PersistentVolumeCliam（PVC）とは
-・・・PVが永続データの実体、PVCが永続データの要求
-
-- StatefulSetとは
-・・・Podの集合、Podをスケールする際の名前が一定
-
-- Ingressとは
-・・・外部公開、L7ロードバランサー
-
-
 
 ### Hello World
 ```
