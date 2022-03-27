@@ -17,6 +17,8 @@ services:
     ports:
       - 3306:3306
     restart: always
+    volumes:
+      - k8s-sample-mysql-store:/var/lib/mysql
 
   backend:
     image: k8s-sample/backend
@@ -41,3 +43,6 @@ services:
     ports:
      - 3000:3000
     restart: always
+
+volumes:
+  k8s-sample-mysql-store:
