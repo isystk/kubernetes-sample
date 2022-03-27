@@ -4,16 +4,22 @@ metadata:
   annotations:
     kompose.cmd: kompose convert
     kompose.version: 1.26.1 (HEAD)
+    kubernetes.io/change-cause: "Update frontend v1.0.2"
   creationTimestamp: null
   labels:
     io.kompose.service: frontend
   name: frontend
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       io.kompose.service: frontend
-  strategy: {}
+  revisionHistoryLimit: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
   template:
     metadata:
       annotations:
@@ -26,7 +32,7 @@ spec:
       containers:
         - env:
             - name: externalEndpointUrl
-              value: http://backend:9000
+              value: http://localhost:9000
           image: k8s-sample/frontend
           imagePullPolicy: Never
           name: k8s-sample-frontend

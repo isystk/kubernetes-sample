@@ -42,7 +42,6 @@ Kubernetes (クーバーネイティス)とは、Dockerなどのコンテナ仮�
 
 
 
-
 ## Kubernetes を利用する為の環境構築
 ```
 # 必要なコマンドをインストールする
@@ -63,7 +62,7 @@ $ minikube delete
 ```
 
 
-## サンプルアプリケーションの作成
+## サンプルアプリケーションの実行
 
 ```shell
 # minikube VM上のdockerを使うよう設定
@@ -89,13 +88,12 @@ $ cd ..
 # リソースの作成
 $ kubectl apply -f .
 # リソースの確認
-$ kubectl get pod
+$ kubectl get all
 NAME                       READY   STATUS    RESTARTS      AGE
 backend-6dcf857cbf-mvnvh   1/1     Running   1 (15s ago)   23s
 frontend-78b6f79b-vxh69    1/1     Running   0             23s
 mysql-5b57df4c9b-mmcxn     1/1     Running   0             23s
-# サービスの確認
-$ kubectl get service
+
 NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
 backend      ClusterIP   10.101.207.133   <none>        9000/TCP   2m1s
 frontend     ClusterIP   10.103.119.123   <none>        3000/TCP   2m1s
@@ -110,6 +108,27 @@ $ kubectl delete -f .
 
 ```
 
+## ローリングアップデートを試してみる
+```shell
+# ロールアウトの履歴を確認する
+$ kubectl rollout history deploy/frontend
+deployment.apps/frontend 
+REVISION  CHANGE-CAUSE
+1         Update frontend v1.0.0
+# 変更を反映する
+$ kubectl apply -f .
+$ kubectl rollout history deploy/frontend
+deployment.apps/frontend 
+REVISION  CHANGE-CAUSE
+1         Update frontend v1.0.1
+2         Update frontend v1.0.2
+# 変更をロールバックする
+$ kubectl rollout undo deploy/frontend
+$ kubectl rollout history deploy/frontend
+REVISION  CHANGE-CAUSE
+2         Update frontend v1.0.2
+3         Update frontend v1.0.1
+```
 
 ## 参照
 
